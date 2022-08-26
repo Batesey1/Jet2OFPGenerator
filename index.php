@@ -56,16 +56,25 @@ $extrafueltime = gmdate("H:i",$extrafuel);
 $blockfueltime = gmdate("H:i",$decodeSimbrief['times']['endurance']);
 $alternatetimes = array();
 $altdis = array();
+$alticao = array();
+$altiata = array();
 try{
 foreach ($decodeSimbrief['alternate'] as $alternate){
     array_push($alternatetimes,gmdate("H:i",$alternate['ete']));
     $alttime = $alternatetimes[0];
     array_push($altdis,$alternate['air_distance']);
     $altdistance = $altdis[0];
+    array_push($alticao,$alternate['icao_code']);
+    $alternateICAO = $alticao[0];
+    array_push($altiata,$alternate['iata_code']);
+    $alternateIATA = $altiata[0];
 }} catch (Throwable $t) {
     $alttime = $decodeSimbrief['alternate']['ete'];
     $altdistance = $decodeSimbrief['alternate']['air_distance'];
+    $alternateICAO = array_push($alticao,$decodeSimbrief['alternate']['icao_code']);;
+    $alternateIATA = array_push($altiata,$decodeSimbrief['alternate']['iata_code']);
 }
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -106,6 +115,7 @@ foreach ($decodeSimbrief['alternate'] as $alternate){
         table.fixed td:nth-of-type(4) {width:80px;border-left: black 1px solid;border-bottom: black 1px solid;border-right: black 1px solid; border-top: black 1px solid;}/*Setting the width of column 3.*/
         table.fixed td:nth-of-type(5) {width:80px;border-left: black 1px solid;border-bottom: black 1px solid;border-right: black 1px solid; border-top: black 1px solid;}/*Setting the width of column 3.*/
 
+
         table.fixed2 {table-layout:fixed; width:80px;}/*Setting the table width is important!*/
         table.fixed2 td {overflow:hidden;}/*Hide text outside the cell.*/
         table.fixed2 td:nth-of-type(1) {width:80px;}/*Setting the width of column 1.*/
@@ -113,10 +123,24 @@ foreach ($decodeSimbrief['alternate'] as $alternate){
         table.fixed2 td:nth-of-type(3) {width:180px;}/*Setting the width of column 3.*/
         table.fixed2 td:nth-of-type(4) {width:80px;}/*Setting the width of column 3.*/
         table.fixed2 td:nth-of-type(5) {width:80px;}/*Setting the width of column 3.*/
+
+        table.fixed3 {table-layout:fixed; width:80px;}/*Setting the table width is important!*/
+        table.fixed3 td {overflow:hidden;}/*Hide text outside the cell.*/
+        table.fixed3 td:nth-of-type(1) {width:70px; border-left: black 1px solid;border-bottom: black 1px solid;border-right: black 1px solid; border-top: black 1px solid;}/*Setting the width of column 1.*/
+        table.fixed3 td:nth-of-type(2) {width:120px;border-left: black 1px solid;border-bottom: black 1px solid;border-right: black 1px solid; border-top: black 1px solid;}/*Setting the width of column 2.*/
+        table.fixed3 td:nth-of-type(3) {width:40px;border-left: black 1px solid;border-bottom: black 1px solid;border-right: black 1px solid; border-top: black 1px solid;}/*Setting the width of column 3.*/
+        table.fixed3 td:nth-of-type(4) {width:40px;border-left: black 1px solid;border-bottom: black 1px solid;border-right: black 1px solid; border-top: black 1px solid;}/*Setting the width of column 3.*/
+        table.fixed3 td:nth-of-type(5) {width:40px;border-left: black 1px solid;border-bottom: black 1px solid;border-right: black 1px solid; border-top: black 1px solid;}/*Setting the width of column 3.*/
+        table.fixed3 td:nth-of-type(6) {width:40px;border-left: black 1px solid;border-bottom: black 1px solid;border-right: black 1px solid; border-top: black 1px solid;}/*Setting the width of column 3.*/
+        table.fixed3 td:nth-of-type(7) {width:40px;border-left: black 1px solid;border-bottom: black 1px solid;border-right: black 1px solid; border-top: black 1px solid;}/*Setting the width of column 3.*/
+        table.fixed3 td:nth-of-type(8) {width:40px;border-left: black 1px solid;border-bottom: black 1px solid;border-right: black 1px solid; border-top: black 1px solid;}/*Setting the width of column 3.*/
+        table.fixed3 td:nth-of-type(9) {width:40px;border-left: black 1px solid;border-bottom: black 1px solid;border-right: black 1px solid; border-top: black 1px solid;}/*Setting the width of column 3.*/
+        table.fixed3 td:nth-of-type(10) {width:110px;border-left: black 1px solid;border-bottom: black 1px solid;border-right: black 1px solid; border-top: black 1px solid;}/*Setting the width of column 3.*/
+        table.fixed3 td:nth-of-type(11) {width:80px;border-left: black 1px solid;border-bottom: black 1px solid;border-right: black 1px solid; border-top: black 1px solid;}/*Setting the width of column 3.*/
     </style>
 </head>
 <body>
-<div class="container"></div>
+<div class="container">
 <div id="marginedbox" class="row">
     <div class="col-md-3">FLT NO: <?php echo $flight_number ?></div>
     <div class="col-md-6 text-center">RELEASE NBR <?php echo $release ."/0 ". gmdate("ymd G:i:s",$decodeSimbrief['params']['time_generated'])."Z"?></div>
@@ -293,7 +317,7 @@ foreach ($decodeSimbrief['alternate'] as $alternate){
                 <td style="width: 110px"><?php echo $destination_iata?></td>
                 <td style="width: 90px">FUEL</td>
                 <td style="width: 80px">TIME</td>
-                <td style="width: 150px">DIST</td>
+                <td style="width: 137px">DIST</td>
             </tr>
             <tr>
                 <td>TRIP</td>
@@ -401,6 +425,123 @@ foreach ($decodeSimbrief['alternate'] as $alternate){
         PLANNED BURN: <?php echo $tripfuel; ?>
         <br>
         BURN:
+    </div>
+</div>
+<br>
+<div id="marginedbox" class="row">
+    <div class="col-md-3">FLT NO: <?php echo $flight_number ?></div>
+    <div class="col-md-6 text-center">RELEASE NBR <?php echo $release ."/0 ". gmdate("ymd G:i:s",$decodeSimbrief['params']['time_generated'])."Z"?></div>
+    <div class="col-md-3 "><div class="float-end">DOF: <?php echo $dof?></div></div>
+</div>
+    <div id="marginedbox" class="row border border-dark g-0 ">
+        <div class="col-md-12 text-center" style="margin-top: 3%; margin-bottom: 4%;"><?php echo $flight_number . "    " . $dof . " RTNG " . $departure."-".$destination?></div>
+    </div>
+    <div id="marginedbox" class="row border border-dark g-0 ">
+        <div class="col-md-12">
+        <table class="fixed3" style="width: 100%!important;">
+            <tr class="text-center">
+                <td>AWY1234 <br> MORA</td>
+                <td>PSN</td>
+                <td>DST</td>
+                <td>TT <br>MT</td>
+                <td>TM <br>CT</td>
+                <td>E</td>
+                <td>R</td>
+                <td>A</td>
+                <td style="vertical-align: top; text-align: right; margin-right: 1%">WS <br>FL</td>
+                <td>WIND-MACH<br>TMP-TAS/GS</td>
+                <td>EFB - AFB<br>MFB - ...</td>
+            </tr>
+            <?php foreach ($decodeSimbrief['navlog']['fix'] as $fix){ $remainingdis = ($remainingdis-$fix['distance'])
+            ?>
+            <tr>
+                <td><?php echo $fix['via_airway'] . "<br>" . "0" . substr($fix['mora'], 0,2 )?></td>
+                <td><?php echo $fix['ident'] . "<br>" . $fix['pos_lat'] . "<br>" . $fix['pos_long']?></td>
+                <td><?php echo $fix['distance'] . "<br>" . $remainingdis ?></td>
+                <td><!--TT MT--></td>
+                <td class="text-center"><?php echo gmdate("Hi",$fix['time_leg']) . "<br>" . gmdate("Hi",$fix['time_total'])  ?></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><?php echo "<br>" ?><?php if($fix['altitude_feet']>=10000) {echo substr($fix['altitude_feet'],0,3);} else {echo "0" . substr($fix['altitude_feet'],0,2);}?></td>
+                <td><?php echo $fix['wind_dir'] . "/". $fix['wind_spd'] . " ". " ". ($fix['mach']*1000) . "<br>" ?><?php if($fix['oat']< 0) {echo "M".substr($fix['oat'],1,2);} else {echo "P".substr($fix['oat'],0,2);}?><?php echo " " . " " . $fix['true_airspeed'] . "/" . $fix['groundspeed'];?></td>
+                <td><?php echo substr($fix['fuel_plan_onboard'],0,2) ."." . substr($fix['fuel_plan_onboard'],2,2)  . " ...." . "<br>" . substr($fix['fuel_min_onboard'],0,2) ."." . substr($fix['fuel_min_onboard'],2,2) . " ...."; ?></td>
+            </tr>
+            <?php };?>
+        </table>
+    </div></div>
+    <div id="marginedbox" class="row">
+        <div class="col-md-3">FLT NO: <?php echo $flight_number ?></div>
+        <div class="col-md-6 text-center">RELEASE NBR <?php echo $release ."/0 ". gmdate("ymd G:i:s",$decodeSimbrief['params']['time_generated'])."Z"?></div>
+        <div class="col-md-3 "><div class="float-end">DOF: <?php echo $dof?></div></div>
+</div>
+    <div id="marginedbox" class="row border border-dark g-0 ">
+        <div class="col-md-12" style="">DECENT WINDS
+            <br><br>
+        <?php foreach ($decodeSimbrief['navlog']['fix'] as $fix)
+            if($fix['ident'] == "TOD") {
+                foreach($fix['wind_data']['level'] as $winds) {
+                if($winds['altitude'] >=10000 && $winds['altitude'] <= 30000){echo  "FL". substr($winds['altitude'],0,3) . " ". $winds['wind_dir']."/".$winds['wind_spd'] . " " . " ";}
+                elseif ($winds['altitude'] == 5000) {
+                    echo  "FL". substr($winds['altitude'],0,2) . " ". $winds['wind_dir']."/".$winds['wind_spd'] . " " . " ";}
+            }
+        }
+        ?></div>
+    </div>
+    <div id="marginedbox" class="row border border-dark g-0 ">
+        <table class="" style="width: 100%!important;">
+            <tr>
+                <td>POINT</td>
+                <td>FL100</td>
+                <td>FL180</td>
+                <td>FL240</td>
+                <td>FL300</td>
+                <td>FL340</td>
+                <td>FL390</td>
+            </tr>
+            <tr>
+                <td></td>
+               <td>W/V  TMP</td>
+               <td>W/V  TMP</td>
+               <td>W/V  TMP</td>
+               <td>W/V  TMP</td>
+               <td>W/V  TMP</td>
+               <td>W/V  TMP</td>
+            </tr>
+            <?php foreach ($decodeSimbrief['navlog']['fix'] as $fix){?>
+                <tr>
+                    <td><?php echo $fix['ident']?></td>
+                <?php foreach($fix['wind_data']['level'] as $winds) { ?>
+                    <?php
+                    if($winds['altitude'] == 10000) {
+                        echo "<td>" . $winds['wind_dir'] . "/" . $winds['wind_spd'] . "-" . $winds['oat'] . "</td>";
+                    } ?>
+                    <?php
+                    if($winds['altitude'] == 18000) {
+                        echo "<td>" . $winds['wind_dir'] . "/" . $winds['wind_spd'] . "-" . $winds['oat'] . "</td>";
+                    } ?>
+                    <?php
+                    if($winds['altitude'] == 24000) {
+                        echo "<td>" . $winds['wind_dir'] . "/" . $winds['wind_spd'] . "-" . $winds['oat'] . "</td>";
+                    } ?>
+                    <?php
+                    if($winds['altitude'] == 30000) {
+                        echo "<td>" . $winds['wind_dir'] . "/" . $winds['wind_spd'] . "-" . $winds['oat'] . "</td>";
+                    } ?>
+                    <?php
+                    if($winds['altitude'] == 34000) {
+                        echo "<td>" . $winds['wind_dir'] . "/" . $winds['wind_spd'] . "-" . $winds['oat'] . "</td>";
+                    } ?>
+                    <?php
+                    if($winds['altitude'] == 39000) {
+                        echo "<td>" . $winds['wind_dir'] . "/" . $winds['wind_spd'] . "-" . $winds['oat'] . "</td>";
+                    } ?>
+                    <?php }}?>
+        </table>
+    </div>
+    <div id="marginedbox" class="row border border-dark g-0 ">
+        <div class="text-center" style="margin-top: 2%; margin-bottom: 2%"><span>ICAO FLIGHT PLAN</span></div>
+        <?php echo $decodeSimbrief['atc']['flightplan_text']; ?>
     </div>
 </body>
 </html>
