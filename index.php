@@ -514,27 +514,27 @@ foreach ($decodeSimbrief['alternate'] as $alternate){
                 <?php foreach($fix['wind_data']['level'] as $winds) { ?>
                     <?php
                     if($winds['altitude'] == 10000) {
-                        echo "<td>" . $winds['wind_dir'] . "/" . $winds['wind_spd'] . "-" . $winds['oat'] . "</td>";
+                        echo "<td>" . $winds['wind_dir'] . "/" . $winds['wind_spd'] . "" . $winds['oat'] . "</td>";
                     } ?>
                     <?php
                     if($winds['altitude'] == 18000) {
-                        echo "<td>" . $winds['wind_dir'] . "/" . $winds['wind_spd'] . "-" . $winds['oat'] . "</td>";
+                        echo "<td>" . $winds['wind_dir'] . "/" . $winds['wind_spd'] . "" . $winds['oat'] . "</td>";
                     } ?>
                     <?php
                     if($winds['altitude'] == 24000) {
-                        echo "<td>" . $winds['wind_dir'] . "/" . $winds['wind_spd'] . "-" . $winds['oat'] . "</td>";
+                        echo "<td>" . $winds['wind_dir'] . "/" . $winds['wind_spd'] . "" . $winds['oat'] . "</td>";
                     } ?>
                     <?php
                     if($winds['altitude'] == 30000) {
-                        echo "<td>" . $winds['wind_dir'] . "/" . $winds['wind_spd'] . "-" . $winds['oat'] . "</td>";
+                        echo "<td>" . $winds['wind_dir'] . "/" . $winds['wind_spd'] . "" . $winds['oat'] . "</td>";
                     } ?>
                     <?php
                     if($winds['altitude'] == 34000) {
-                        echo "<td>" . $winds['wind_dir'] . "/" . $winds['wind_spd'] . "-" . $winds['oat'] . "</td>";
+                        echo "<td>" . $winds['wind_dir'] . "/" . $winds['wind_spd'] . "" . $winds['oat'] . "</td>";
                     } ?>
                     <?php
                     if($winds['altitude'] == 39000) {
-                        echo "<td>" . $winds['wind_dir'] . "/" . $winds['wind_spd'] . "-" . $winds['oat'] . "</td>";
+                        echo "<td>" . $winds['wind_dir'] . "/" . $winds['wind_spd'] . "" . $winds['oat'] . "</td>";
                     } ?>
                     <?php }}?>
         </table>
