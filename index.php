@@ -97,18 +97,14 @@ foreach ($decodeSimbrief['alternate'] as $alternate){
             margin:0 auto;
             font-family: 'Courier Prime', monospace;
         }
-        table, th, td {
-            border: 1px solid black;
-            border-collapse: separate;
-            border-spacing: 0px;
-            margin-right: -1px;
-        }
+
         table.fixed {table-layout:fixed; width:80px;}/*Setting the table width is important!*/
         table.fixed td {overflow:hidden;}/*Hide text outside the cell.*/
-        table.fixed td:nth-of-type(1) {width:80px;}/*Setting the width of column 1.*/
-        table.fixed td:nth-of-type(2) {width:80px;}/*Setting the width of column 2.*/
-        table.fixed td:nth-of-type(3) {width:80px;}/*Setting the width of column 3.*/
-        table.fixed td:nth-of-type(4) {width:80px;}/*Setting the width of column 3.*/
+        table.fixed td:nth-of-type(1) {width:80px; border-left: black 1px solid;border-bottom: black 1px solid;border-right: black 1px solid; border-top: black 1px solid;}/*Setting the width of column 1.*/
+        table.fixed td:nth-of-type(2) {width:80px;border-left: black 1px solid;border-bottom: black 1px solid;border-right: black 1px solid; border-top: black 1px solid;}/*Setting the width of column 2.*/
+        table.fixed td:nth-of-type(3) {width:80px;border-left: black 1px solid;border-bottom: black 1px solid;border-right: black 1px solid; border-top: black 1px solid;}/*Setting the width of column 3.*/
+        table.fixed td:nth-of-type(4) {width:80px;border-left: black 1px solid;border-bottom: black 1px solid;border-right: black 1px solid; border-top: black 1px solid;}/*Setting the width of column 3.*/
+        table.fixed td:nth-of-type(5) {width:80px;border-left: black 1px solid;border-bottom: black 1px solid;border-right: black 1px solid; border-top: black 1px solid;}/*Setting the width of column 3.*/
 
         table.fixed2 {table-layout:fixed; width:80px;}/*Setting the table width is important!*/
         table.fixed2 td {overflow:hidden;}/*Hide text outside the cell.*/
@@ -116,6 +112,7 @@ foreach ($decodeSimbrief['alternate'] as $alternate){
         table.fixed2 td:nth-of-type(2) {width:80px;}/*Setting the width of column 2.*/
         table.fixed2 td:nth-of-type(3) {width:180px;}/*Setting the width of column 3.*/
         table.fixed2 td:nth-of-type(4) {width:80px;}/*Setting the width of column 3.*/
+        table.fixed2 td:nth-of-type(5) {width:80px;}/*Setting the width of column 3.*/
     </style>
 </head>
 <body>
@@ -125,7 +122,7 @@ foreach ($decodeSimbrief['alternate'] as $alternate){
     <div class="col-md-6 text-center">RELEASE NBR <?php echo $release ."/0 ". gmdate("ymd G:i:s",$decodeSimbrief['params']['time_generated'])."Z"?></div>
     <div class="col-md-3 "><div class="float-end">DOF: <?php echo $dof?></div></div>
 </div>
-<div id="marginedbox" class="row border border-dark">
+<div id="marginedbox" class="row border border-dark g-0">
     <div class="col-md-4">
     <strong><?php echo $callsign?></strong>
         <br>
@@ -209,8 +206,8 @@ foreach ($decodeSimbrief['alternate'] as $alternate){
     <br>
     <br>
 </div>
-<div id="marginedbox" class="row">
-    <div class="col-md-5  border border-dark">
+<div id="marginedbox" class="row g-0">
+    <div class="col-md-5" style="border-left: black 1px solid;">
         <br>
         <?php echo $departure."/".$destination;
         echo "<br>";
@@ -220,22 +217,22 @@ foreach ($decodeSimbrief['alternate'] as $alternate){
 
         ?>
     </div>
-    <div class="col-md-7  border border-dark">
-        <table style="width: 100%">
+    <div class="col-md-7 box1" style="border-right: black 1px solid">
+        <table style="width: 100%;border-right: 0px black solid !important;" class="fixed">
             <tr>
-                <td style="width: 130px"><?php echo $destination . "/" . $destination_iata ?></td>
-                <td style="float: left; width: 160px;">ON</td>
-                <td style="float: left; width: 185px;">LAND</td>
+                <td style="width: 50px"><?php echo $destination."/".$destination_iata ?></td>
+                <td>ON</td>
+                <td>LAND</td>
             </tr>
             <tr>
-                <td style="width: 130px"><?php echo $departure . "/" . $departure_iata ?></td>
-                <td style="float: left; width: 160px;">OFF</td>
-                <td  style="float: left; width: 185px;">AIR</td>
+                <td><?php echo $departure."/".$departure_iata ?></td>
+                <td>OFF</td>
+                <td>AIR</td>
             </tr>
-            <tr>
-                <td><br></td>
-                <td style="float: left; width: 160px; height: 50px">BLK</td>
-                <td  style="float: left; width: 185px;height: 50px">FLT</td>
+            <tr style="">
+                <td></td>
+                <td style="height:50px;vertical-align:top;">BLK</td>
+                <td style="height: 50px;vertical-align:top;">FLT <br></td>
             </tr>
         </table>
     </div>
@@ -244,33 +241,33 @@ foreach ($decodeSimbrief['alternate'] as $alternate){
         <div class="col-md-6 border border-dark">
             <strong>DISPATCH LOAD</strong>
             <table class="fixed2"style="border: black 0px solid !important;">
-                <tr style="border: black 0px solid !important;">
-                    <td style="border: black 0px solid !important;">PAX</td>
-                    <td style="border: black 0px solid !important;"><?php echo $pax?></td>
-                    <td style="border: black 0px solid !important;"></td>
+                <tr>
+                    <td>PAX</td>
+                    <td><?php echo $pax?></td>
+                    <td></td>
                 </tr>
-                <tr style="border: black 0px solid !important;">
-                    <td style="border: black 0px solid !important;">EZFM</td>
-                    <td style="border: black 0px solid !important;"><?php echo $zfw?></td>
-                    <td style="border: black 0px solid !important;"><?php echo "MZFM " .$mzfw?></td>
+                <tr>
+                    <td>EZFM</td>
+                    <td><?php echo $zfw?></td>
+                    <td><?php echo "MZFM " .$mzfw?></td>
                 </tr>
-                <tr style="border: black 0px solid !important;">
-                    <td style="border: black 0px solid !important;">PLD <!-- PAYLOAD --></td>
-                    <td style="border: black 0px solid !important;"><?php echo $pld?></td>
+                <tr>
+                    <td>PLD <!-- PAYLOAD --></td>
+                    <td><?php echo $pld?></td>
                 </tr>
-                <tr style="border: black 0px solid !important;">
-                    <td style="border: black 0px solid !important;">TOM</td>
-                    <td style="border: black 0px solid !important;"><?php echo $tom?></td>
-                    <td style="border: black 0px solid !important;"><?php echo "DMTOM ".  $mtom?></td>
+                <tr>
+                    <td>TOM</td>
+                    <td><?php echo $tom?></td>
+                    <td><?php echo "DMTOM ".  $mtom?></td>
                 </tr>
-                <tr style="border: black 0px solid !important;">
-                    <td style="border: black 0px solid !important;">DOM</td>
-                    <td style="border: black 0px solid !important;"><?php echo "00000"?></td>
+                <tr>
+                    <td>DOM</td>
+                    <td><?php echo "00000"?></td>
                 </tr>
-                <tr style="border: black 0px solid !important;">
-                    <td style="border: black 0px solid !important;">LDM</td>
-                    <td style="border: black 0px solid !important;"><?php echo $ldm?></td>
-                    <td style="border: black 0px solid !important;"><?php echo "MLDM " . $mldm?></td>
+                <tr>
+                    <td>LDM</td>
+                    <td><?php echo $ldm?></td>
+                    <td><?php echo "MLDM " . $mldm?></td>
                 </tr>
             </table>
         </div>
@@ -289,97 +286,109 @@ foreach ($decodeSimbrief['alternate'] as $alternate){
     </div>
     <div class="col-md-6 border border-dark"></div>
     </div>
-<div id="marginedbox" class="row">
+<div id="marginedbox" class="row g-0">
     <div class="col-md-6 border border-dark">
-        <table class="fixed"style="border: black 0px solid !important;">
-            <tr style="border: black 0px solid !important;">
-                <td style="border: black 0px solid !important;"><?php echo $destination_iata?></td>
-                <td style="border: black 0px solid !important;">FUEL</td>
-                <td style="border: black 0px solid !important;">TIME</td>
-                <td style="border: black 0px solid !important;">DIST</td>
+        <table class="fixed"style="width 100%">
+            <tr>
+                <td style="width: 110px"><?php echo $destination_iata?></td>
+                <td style="width: 90px">FUEL</td>
+                <td style="width: 80px">TIME</td>
+                <td style="width: 150px">DIST</td>
             </tr>
             <tr>
-                <td style="border: black 0px solid !important;">TRIP</td>
-                <td style="border: black 0px solid !important;"><?php echo $tripfuel?></td>
-                <td style="border: black 0px solid !important;"><?php echo $ete?></td>
-                <td style="border: black 0px solid !important;"><?php echo $distance?></td>
+                <td>TRIP</td>
+                <td><?php echo $tripfuel?></td>
+                <td><?php echo $ete?></td>
+                <td><?php echo $distance?></td>
             </tr>
             <tr>
-                <td style="border: black 0px solid !important;">CONT<?php echo $contrule; ?></td>
-                <td style="border: black 0px solid !important;"><?php echo $cont; ?></td>
-                <td style="border: black 0px solid !important;"><?php echo $conttime; ?></td>
+                <td>CONT<?php echo $contrule; ?></td>
+                <td><?php echo $cont; ?></td>
+                <td><?php echo $conttime; ?></td>
+                <td></td>
             </tr>
             <tr>
-                <td style="border: black 0px solid !important;">ALT</td>
-                <td style="border: black 0px solid !important;"><?php echo $alternatefuel; ?></td>
-                <td style="border: black 0px solid !important;"><?php echo $alttime; ?></td>
-                <td style="border: black 0px solid !important;"><?php echo $altdistance; ?></td>
+                <td>ALT</td>
+                <td><?php echo $alternatefuel; ?></td>
+                <td><?php echo $alttime; ?></td>
+                <td><?php echo $altdistance; ?></td>
+                <td></td>
             </tr>
             <tr>
-                <td style="border: black 0px solid !important;">FRF</td>
-                <td style="border: black 0px solid !important;"><?php echo $reservefuel; ?></td>
-                <td style="border: black 0px solid !important;"><?php echo $reservetime; ?></td>
+                <td>FRF</td>
+                <td><?php echo $reservefuel; ?></td>
+                <td><?php echo $reservetime; ?></td>
+                <td></td>
             </tr>
             <tr>
-            <td style="border: black 0px solid !important;">LLV</td>
-            <td style="border: black 0px solid !important;">0</td>
-            <td style="border: black 0px solid !important;">00:00</td>
+            <td>LLV</td>
+            <td>0</td>
+            <td>00:00</td>
+                <td></td>
             </tr>
             <tr>
-            <td style="border: black 0px solid !important;">ETOPS</td>
-                <td style="border: black 0px solid !important;"><?php echo $etopsfuel; ?></td>
-                <td style="border: black 0px solid !important;"><?php echo $etopsfueltime; ?></td>
+            <td>ETOPS</td>
+                <td><?php echo $etopsfuel; ?></td>
+                <td><?php echo $etopsfueltime; ?></td>
+                <td></td>
             </tr>
             <tr>
-            <td style="border: black 0px solid !important;">MEL/CDL</td>
+            <td>MEL/CDL</td>
+                <td></td>
+                <td></td>
+                <td></td>
             </tr>
             <tr>
-            <td style="border: black 0px solid !important;">TAXI</td>
-                <td style="border: black 0px solid !important;"><?php echo $taxifuel; ?></td>
+            <td>TAXI</td>
+                <td><?php echo $taxifuel; ?></td>
+                <td></td>
+                <td></td>
             </tr>
             <tr>
-            <td style="border: black 0px solid !important;">EXTRA</td>
-                <td style="border: black 0px solid !important;"><?php echo $extrafuel; ?></td>
-                <td style="border: black 0px solid !important;"><?php echo $extrafueltime; ?></td>
+            <td>EXTRA</td>
+                <td><?php echo $extrafuel; ?></td>
+                <td><?php echo $extrafueltime; ?></td>
+                <td></td>
             </tr>
             <tr>
-            <td style="border: black 0px solid !important;">BLOCK</td>
-                <td style="border: black 0px solid !important;"><?php echo $blockfuel; ?></td>
-                <td style="border: black 0px solid !important;"><?php echo $blockfueltime; ?></td>
+            <td>BLOCK</td>
+                <td><?php echo $blockfuel; ?></td>
+                <td><?php echo $blockfueltime; ?></td>
+                <td></td>
             </tr>
         </table>
     </div>
     <div class="col-md-6 border border-dark">
-        <div class="text-center"><span align="center"><?php echo "FOR INFO ONLY" ?></span></div>
-        <table class="text-center" style="border: black 0px solid !important; width:100%">
-            <tr style="border: black 0px solid !important;">
-                <td style="border: black 0px solid !important;">ALTN</td>
-                <td  style="border: black 0px solid !important;">DIST</td>
-                <td style="border: black 0px solid !important;">FUEL</td>
-                <td style="border: black 0px solid !important;">TIME</td>
-                <td style="border: black 0px solid !important;">MDIV</td>
+        <div class="text-center"><?php echo "FOR INFO ONLY" ?></div>
+        <table class="text-center fixed" style="width:100%">
+            <tr>
+                <td>ALTN</td>
+                <td >DIST</td>
+                <td>FUEL</td>
+                <td>TIME</td>
+                <td>MDIV</td>
             </tr>
             <?php try{ foreach ($decodeSimbrief['alternate'] as $altn){?>
             <tr>
-                <td  style="border: black 0px solid !important;"><?php echo $altn['icao_code']?></td>
-                <td  style="border: black 0px solid !important;"><?php echo $altn['air_distance']?></td>
-                <td  style="border: black 0px solid !important;"><?php echo $altn['burn']?></td>
-                <td  style="border: black 0px solid !important;"><?php echo gmdate("H:i",$altn['ete']);?></td>
-                <td  style="border: black 0px solid !important;"><?php echo $reservefuel + $altn['burn']?></td>
+                <td ><?php echo $altn['icao_code']?></td>
+                <td ><?php echo $altn['air_distance']?></td>
+                <td ><?php echo $altn['burn']?></td>
+                <td ><?php echo gmdate("H:i",$altn['ete']);?></td>
+                <td ><?php echo $reservefuel + $altn['burn']?></td>
             </tr>
             <?php }} catch (Throwable $t) {?>
             <tr>
-                <td style="border: black 0px solid !important;"><?php echo $decodeSimbrief['alternate']['icao_code'];?></td>
-                <td style="border: black 0px solid !important;"><?php echo $decodeSimbrief['alternate']['air_distance'];?></td>
-                <td style="border: black 0px solid !important;"><?php echo $decodeSimbrief['alternate']['burn'];?></td>
-                <td style="border: black 0px solid !important;"><?php echo gmdate("H:i",$decodeSimbrief['alternate']['ete']);?></td>
-                <td  style="border: black 0px solid !important;"><?php echo $reservefuel + $decodeSimbrief['alternate']['burn']?></td>
+                <td><?php echo $decodeSimbrief['alternate']['icao_code'];?></td>
+                <td><?php echo $decodeSimbrief['alternate']['air_distance'];?></td>
+                <td><?php echo $decodeSimbrief['alternate']['burn'];?></td>
+                <td><?php echo gmdate("H:i",$decodeSimbrief['alternate']['ete']);?></td>
+                <td ><?php echo $reservefuel + $decodeSimbrief['alternate']['burn']?></td>
             </tr>
             <?php }?>
         </table>
     </div>
 </div>
-<div id="marginedbox" class="row">
+<div id="marginedbox" class="row g-0">
     <div class="col-md-3 border border-dark">
         BLK:
         <?php echo "<br>";?>
@@ -389,7 +398,7 @@ foreach ($decodeSimbrief['alternate'] as $alternate){
         <?php echo "<br>";?>
     </div>
     <div class="col-md-5 border border-dark">
-        PLANNED BURN: <?php echo $tripfuel ?>
+        PLANNED BURN: <?php echo $tripfuel; ?>
         <br>
         BURN:
     </div>
