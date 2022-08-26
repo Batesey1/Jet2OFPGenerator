@@ -112,9 +112,9 @@ foreach ($decodeSimbrief['alternate'] as $alternate){
 
         table.fixed2 {table-layout:fixed; width:80px;}/*Setting the table width is important!*/
         table.fixed2 td {overflow:hidden;}/*Hide text outside the cell.*/
-        table.fixed2 td:nth-of-type(1) {width:150px;}/*Setting the width of column 1.*/
+        table.fixed2 td:nth-of-type(1) {width:80px;}/*Setting the width of column 1.*/
         table.fixed2 td:nth-of-type(2) {width:80px;}/*Setting the width of column 2.*/
-        table.fixed2 td:nth-of-type(3) {width:80px;}/*Setting the width of column 3.*/
+        table.fixed2 td:nth-of-type(3) {width:180px;}/*Setting the width of column 3.*/
         table.fixed2 td:nth-of-type(4) {width:80px;}/*Setting the width of column 3.*/
     </style>
 </head>
@@ -243,7 +243,7 @@ foreach ($decodeSimbrief['alternate'] as $alternate){
 <div id="marginedbox" class="row">
         <div class="col-md-6 border border-dark">
             <strong>DISPATCH LOAD</strong>
-            <table class="fixed"style="border: black 0px solid !important;">
+            <table class="fixed2"style="border: black 0px solid !important;">
                 <tr style="border: black 0px solid !important;">
                     <td style="border: black 0px solid !important;">PAX</td>
                     <td style="border: black 0px solid !important;"><?php echo $pax?></td>
@@ -252,7 +252,7 @@ foreach ($decodeSimbrief['alternate'] as $alternate){
                 <tr style="border: black 0px solid !important;">
                     <td style="border: black 0px solid !important;">EZFM</td>
                     <td style="border: black 0px solid !important;"><?php echo $zfw?></td>
-                    <td style="border: black 0px solid !important;"><?php echo $mzfw?></td>
+                    <td style="border: black 0px solid !important;"><?php echo "MZFM " .$mzfw?></td>
                 </tr>
                 <tr style="border: black 0px solid !important;">
                     <td style="border: black 0px solid !important;">PLD <!-- PAYLOAD --></td>
@@ -261,7 +261,7 @@ foreach ($decodeSimbrief['alternate'] as $alternate){
                 <tr style="border: black 0px solid !important;">
                     <td style="border: black 0px solid !important;">TOM</td>
                     <td style="border: black 0px solid !important;"><?php echo $tom?></td>
-                    <td style="border: black 0px solid !important;"><?php echo $mtom?></td>
+                    <td style="border: black 0px solid !important;"><?php echo "DMTOM ".  $mtom?></td>
                 </tr>
                 <tr style="border: black 0px solid !important;">
                     <td style="border: black 0px solid !important;">DOM</td>
@@ -270,7 +270,7 @@ foreach ($decodeSimbrief['alternate'] as $alternate){
                 <tr style="border: black 0px solid !important;">
                     <td style="border: black 0px solid !important;">LDM</td>
                     <td style="border: black 0px solid !important;"><?php echo $ldm?></td>
-                    <td style="border: black 0px solid !important;"><?php echo $mldm?></td>
+                    <td style="border: black 0px solid !important;"><?php echo "MLDM " . $mldm?></td>
                 </tr>
             </table>
         </div>
