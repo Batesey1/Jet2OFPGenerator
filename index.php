@@ -90,6 +90,7 @@ foreach ($decodeSimbrief['alternate'] as $alternate){
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
     <style>
+        
         #marginedbox{
             margin-left: 70px;
             margin-right: 70px;
@@ -105,6 +106,7 @@ foreach ($decodeSimbrief['alternate'] as $alternate){
             width:1000px;
             margin:0 auto;
             font-family: 'Courier Prime', monospace;
+            min-width:768px;
         }
 
         table.fixed {table-layout:fixed; width:80px;}/*Setting the table width is important!*/
@@ -137,6 +139,8 @@ foreach ($decodeSimbrief['alternate'] as $alternate){
         table.fixed3 td:nth-of-type(9) {width:40px;border-left: black 1px solid;border-bottom: black 1px solid;border-right: black 1px solid; border-top: black 1px solid;}/*Setting the width of column 3.*/
         table.fixed3 td:nth-of-type(10) {width:110px;border-left: black 1px solid;border-bottom: black 1px solid;border-right: black 1px solid; border-top: black 1px solid;}/*Setting the width of column 3.*/
         table.fixed3 td:nth-of-type(11) {width:80px;border-left: black 1px solid;border-bottom: black 1px solid;border-right: black 1px solid; border-top: black 1px solid;}/*Setting the width of column 3.*/
+
+        
     </style>
 </head>
 <body>
@@ -472,7 +476,9 @@ foreach ($decodeSimbrief['alternate'] as $alternate){
             ?>
             <tr>
                 <td><?php echo $fix['via_airway'] . "<br>" . "0" . substr($fix['mora'], 0,2 )?></td>
-                <td><?php echo $fix['ident'] . "<br>" . $fix['pos_lat'] . "<br>" . $fix['pos_long']?></td>
+                <td><?php if($fix['type'] == "vor") {
+                    echo $fix['ident'] . " " . $fix['frequency'] . "<br>" . $fix['name'];
+                } else { echo $fix['ident'] . "<br>" . $fix['pos_lat'] . "<br>" . $fix['pos_long'];}?></td>
                 <td><?php echo $fix['distance'] . "<br>" . $remainingdis ?></td>
                 <td><!--TT MT--></td>
                 <td class="text-center"><?php echo gmdate("Hi",$fix['time_leg']) . "<br>" . gmdate("Hi",$fix['time_total'])  ?></td>
