@@ -452,6 +452,22 @@ foreach ($decodeSimbrief['alternate'] as $alternate){
                 <td>WIND-MACH<br>TMP-TAS/GS</td>
                 <td>EFB - AFB<br>MFB - ...</td>
             </tr>
+            <tr style="height: 60px"> <!-- DEPARTURE AIRPORT -->
+                <td><?php echo "RW". $decodeSimbrief['origin']['plan_rwy']?></td>
+                <td><?php echo  $decodeSimbrief['origin']['icao_code'] . " " .$decodeSimbrief['origin']['elevation']."FT";?>
+                <br>
+                <?php echo  $decodeSimbrief['origin']['name'];?>
+                </td>
+                <td><?php echo $distance?></td>
+                <td></td>
+                <td>0000</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td style="text-align: right"><?php echo substr($decodeSimbrief['origin']['elevation'],0,1); ?></td>
+                <td><!-- WIND MACH  --></td>
+                <td><?php echo round($blockfuel/1000,2) . " .... " . "<br>" . round($decodeSimbrief['fuel']['min_takeoff']/1000,2) . " .... "?></td>
+            </tr>
             <?php foreach ($decodeSimbrief['navlog']['fix'] as $fix){ $remainingdis = ($remainingdis-$fix['distance'])
             ?>
             <tr>
@@ -463,11 +479,27 @@ foreach ($decodeSimbrief['alternate'] as $alternate){
                 <td></td>
                 <td></td>
                 <td></td>
-                <td><?php echo "<br>" ?><?php if($fix['altitude_feet']>=10000) {echo substr($fix['altitude_feet'],0,3);} else {echo "0" . substr($fix['altitude_feet'],0,2);}?></td>
+                <td style="text-align: right"><?php echo "<br>" ?><?php if($fix['altitude_feet']>=10000) {echo substr($fix['altitude_feet'],0,3);} else {echo "0" . substr($fix['altitude_feet'],0,2);}?></td>
                 <td><?php echo $fix['wind_dir'] . "/". $fix['wind_spd'] . " ". " ". ($fix['mach']*1000) . "<br>" ?><?php if($fix['oat']< 0) {echo "M".substr($fix['oat'],1,2);} else {echo "P".substr($fix['oat'],0,2);}?><?php echo " " . " " . $fix['true_airspeed'] . "/" . $fix['groundspeed'];?></td>
-                <td><?php echo substr($fix['fuel_plan_onboard'],0,2) ."." . substr($fix['fuel_plan_onboard'],2,2)  . " ...." . "<br>" . substr($fix['fuel_min_onboard'],0,2) ."." . substr($fix['fuel_min_onboard'],2,2) . " ...."; ?></td>
+                <td><?php echo round($fix['fuel_plan_onboard']/1000,2) . " .... " . "<br>" .round($fix['fuel_min_onboard']/1000,2) . " .... " ?></td>
             </tr>
             <?php };?>
+            <tr style="height: 60px"> <!-- ARRIVAL AIRPORT -->
+                <td><?php echo "RW". $decodeSimbrief['destination']['plan_rwy']?></td>
+                <td><?php echo  $decodeSimbrief['destination']['icao_code'] . " " .$decodeSimbrief['destination']['elevation']."FT";?>
+                    <br>
+                    <?php echo  $decodeSimbrief['destination']['name'];?>
+                </td>
+                <td><?php echo $distance?></td>
+                <td></td>
+                <td>0000</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td style="text-align: right"><?php echo substr($decodeSimbrief['destination']['elevation'],0,1); ?></td>
+                <td><!-- WIND MACH  --></td>
+                <td><?php echo round(($blockfuel-$tripfuel)/1000,2) . " .... ". round(($blockfuel-$tripfuel-$alternatefuel)/1000,2). " .... "?></td>
+            </tr>
         </table>
     </div></div>
     <div id="marginedbox" class="row">
