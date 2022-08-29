@@ -195,6 +195,7 @@ foreach ($decodeSimbrief['alternate'] as $alternate){
         echo "<br>";
         echo $validto;
         echo "<br>";
+        echo gmdate("Hi/d",$decodeSimbrief['database_updates']['winds']);
         echo "<br>";
         echo "<br>";
         echo $sked . "Z";
@@ -237,9 +238,15 @@ foreach ($decodeSimbrief['alternate'] as $alternate){
 <div id="marginedbox" class="row g-0">
     <div class="col-md-5" style="border-left: black 1px solid;">
         <br>
-        <?php echo $departure."/".$destination;
+        <?php echo $departure."/".$destination . " "; ?><span style="margin-left: 15%;"> LDG ELEV <?php echo $decodeSimbrief['destination']['elevation'] . "FT";?></span>
+       <?php
         echo "<br>";
-        echo "CI M/".$costindex;
+        echo "CI M/".$costindex ?><span style="margin-left: 23%;"> W/C <?php  if($decodeSimbrief['general']['avg_wind_comp']>=0){
+            echo "P".$decodeSimbrief['general']['avg_wind_comp'];
+        } else {
+            echo "M".$decodeSimbrief['general']['avg_wind_comp'];
+        };?></span>
+        <?php
         echo "<br>";
         echo "FUEL BIAS ". $fuelbias;
 
