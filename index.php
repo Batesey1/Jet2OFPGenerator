@@ -244,7 +244,7 @@ foreach ($decodeSimbrief['alternate'] as $alternate){
         echo "CI M/".$costindex ?><span style="margin-left: 23%;"> W/C <?php  if($decodeSimbrief['general']['avg_wind_comp']>=0){
             echo "P".$decodeSimbrief['general']['avg_wind_comp'];
         } else {
-            echo "M".$decodeSimbrief['general']['avg_wind_comp'];
+            echo "M".substr($decodeSimbrief['general']['avg_wind_comp'],1);
         };?></span>
         <?php
         echo "<br>";
